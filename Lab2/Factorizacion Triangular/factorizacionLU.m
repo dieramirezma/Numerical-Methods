@@ -52,12 +52,10 @@ xs = [literales_x(1:N,:)];
 ys = [literales_y(1:N,:)];
 
 % Impresion del sistema inicial (AX=B)
-inicio = imprimir_sistema(A, xs, B);
-fprintf('\nSistema sin solucionar => AX=B\n');
-disp(inicio);
 
 % Ciclo For que aplica la Reduccion Gaussiana (sin intercambio de filas)
 % Primer for recorre las filas de la matriz A
+U
 for k = 1: N
 
   %Segundo for realiza la reduccion operando las filas de U
@@ -93,10 +91,10 @@ endfor
 % A admita factorizacion LU o no la admita
 if admite
   % Si admite factorizacion LU:
-  % Impresion del sistema A=LU (factorizacion)
-  fprintf("\nFactorizacion A=LU\n");
-  LU = imprimir_sistema(A,L,U);
-  disp(LU);
+  disp("Matriz L");
+  disp(L);
+  disp("Matriz U");
+  disp(U);
 
   % Solucion del sistema LY=B por sustitucion progresiva
   Y = sus_progresiva(L,B)';
@@ -104,28 +102,13 @@ if admite
   % Solucion del sistema UX=Y por sustitucion regresiva
   X = sus_regresiva(U,Y)';
 
-  % Impresion del sistema LY=B
-  fprintf("\nSISTEMA LY=B\n");
-  LY = imprimir_sistema(L,ys,B);
-  disp(LY);
-
   % Impresion del vector columna Y (solucion de Y)
-  fprintf("\nSOLUCION Y\n");
-  disp([["║";"║";"║";"║"] num2str(Y) ["║";"║";"║";"║"]]);
-
-  % Impresion del sistema UX=Y
-  fprintf("\nSISTEMA UX=Y\n");
-  UX = imprimir_sistema(U,xs,Y);
-  disp(UX);
+  disp("SOLUCION Y");
+  disp(Y);
 
   % Impresion del vector columna X (solucion de X)
-  fprintf("\nSOLUCION X\n");
-  disp([["║";"║";"║";"║"] num2str(X) ["║";"║";"║";"║"]]);
-
-  % Impresion del sistema original solucionado (AX=B)
-  fprintf('\nSistema solucionado => AX=B\n');
-  solucion = imprimir_sistema(A, X, B);
-  disp(solucion);
+  disp("SOLUCION X");
+  disp(X);
 else
   % Si no admite LU:
 
